@@ -1,0 +1,2 @@
+C:/Users/Etukz/FlutterProjects/animations/flutter_animations_course_materials/projects/habit_tracker_flutter/android/app/.cxx/Debug/272q5c56/x86/CMakeFiles/edit_cache.dir
+C:/Users/Etukz/FlutterProjects/animations/flutter_animations_course_materials/projects/habit_tracker_flutter/android/app/.cxx/Debug/272q5c56/x86/CMakeFiles/rebuild_cache.dir
