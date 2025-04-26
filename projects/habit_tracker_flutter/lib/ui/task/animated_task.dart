@@ -11,12 +11,15 @@ class AnimatedTask extends StatefulWidget {
 class _AnimatedTaskState extends State<AnimatedTask>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animatedController;
+  late final Animation<double> _curveAnimation;
 
   @override
   void initState() {
     super.initState();
     _animatedController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 750));
+    _curveAnimation =
+        _animatedController.drive(CurveTween(curve: Curves.easeInOut));
   }
 
   @override
@@ -31,9 +34,9 @@ class _AnimatedTaskState extends State<AnimatedTask>
       onTapDown: _handleTapDown,
       onTapUp: _handleTapUp,
       child: AnimatedBuilder(
-          animation: _animatedController,
+          animation: _curveAnimation,
           builder: (context, child) {
-            return TaskCompletionRing(progress: _animatedController.value);
+            return TaskCompletionRing(progress: _curveAnimation.value);
           }),
     );
   }
