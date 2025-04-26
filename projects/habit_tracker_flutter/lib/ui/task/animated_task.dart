@@ -1,8 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:habit_tracker_flutter/ui/common_widgets/centered_svg_icon.dart';
 import 'package:habit_tracker_flutter/ui/task/task_completion_ring.dart';
+import 'package:habit_tracker_flutter/ui/theming/app_theme.dart';
 
 class AnimatedTask extends StatefulWidget {
-  const AnimatedTask({super.key});
+  final String iconName;
+  const AnimatedTask({super.key, required this.iconName});
 
   @override
   State<AnimatedTask> createState() => _AnimatedTaskState();
@@ -36,7 +39,16 @@ class _AnimatedTaskState extends State<AnimatedTask>
       child: AnimatedBuilder(
           animation: _curveAnimation,
           builder: (context, child) {
-            return TaskCompletionRing(progress: _curveAnimation.value);
+            final themeData = AppTheme.of(context);
+            return Stack(
+              children: [
+                TaskCompletionRing(progress: _curveAnimation.value),
+                Positioned.fill(
+                  child: CenteredSvgIcon(
+                      iconName: widget.iconName, color: themeData.taskIcon),
+                )
+              ],
+            );
           }),
     );
   }
