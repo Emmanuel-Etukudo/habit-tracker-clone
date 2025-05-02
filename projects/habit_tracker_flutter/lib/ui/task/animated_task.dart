@@ -48,11 +48,26 @@ class _AnimatedTaskState extends State<AnimatedTask>
     }
   }
 
+  void _handleTapDown(TapDownDetails details) {
+    if (_animatedController.status != AnimationStatus.completed) {
+      _animatedController.forward();
+    } else if (!_showCheckIcon) {
+      _animatedController.value = 0.0;
+    }
+  }
+
+  void _handleTapCancel() {
+    if (_animatedController.status != AnimationStatus.completed) {
+      _animatedController.reverse();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: _handleTapDown,
-      onTapUp: _handleTapUp,
+      onTapUp: (_) => _handleTapCancel(),
+      onTapCancel: _handleTapCancel,
       child: AnimatedBuilder(
           animation: _curveAnimation,
           builder: (context, child) {
@@ -75,19 +90,5 @@ class _AnimatedTaskState extends State<AnimatedTask>
             );
           }),
     );
-  }
-
-  void _handleTapDown(TapDownDetails details) {
-    if (_animatedController.status != AnimationStatus.completed) {
-      _animatedController.forward();
-    } else if (!_showCheckIcon) {
-      _animatedController.value = 0.0;
-    }
-  }
-
-  void _handleTapUp(TapUpDetails details) {
-    if (_animatedController.status != AnimationStatus.completed) {
-      _animatedController.reverse();
-    }
   }
 }
