@@ -22,7 +22,9 @@ Future<void> main() async {
     Task.create(name: 'Drink Water', iconName: AppAssets.water),
     Task.create(name: 'Practice Instrument', iconName: AppAssets.guitar),
   ], force: true);
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(ProviderScope(overrides: [
+    dataStoreProvider.overrideWithValue(dataStore),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
