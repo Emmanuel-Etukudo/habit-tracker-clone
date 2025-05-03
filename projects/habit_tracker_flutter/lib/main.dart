@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:habit_tracker_flutter/constants/app_assets.dart';
 import 'package:habit_tracker_flutter/constants/app_colors.dart';
 import 'package:habit_tracker_flutter/models/task.dart';
@@ -21,7 +22,7 @@ Future<void> main() async {
     Task.create(name: 'Drink Water', iconName: AppAssets.water),
     Task.create(name: 'Practice Instrument', iconName: AppAssets.guitar),
   ], force: true);
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
