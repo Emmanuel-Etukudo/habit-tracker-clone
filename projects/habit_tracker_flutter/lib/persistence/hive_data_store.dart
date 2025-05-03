@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:habit_tracker_flutter/models/task.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -23,5 +24,9 @@ class HiveDataStore {
       print(
           'Box is not empty, skipping demo task creation. box length: ${box.length}');
     }
+  }
+
+  ValueListenable<Box<Task>> taskListenable() {
+    return Hive.box<Task>(taskBoxName).listenable();
   }
 }
