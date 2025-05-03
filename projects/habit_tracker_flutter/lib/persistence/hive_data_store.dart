@@ -12,4 +12,16 @@ class HiveDataStore {
     // Open the box for storing tasks
     await Hive.openBox<Task>(taskBoxName);
   }
+
+  Future<void> createDemoTasks(
+      {required List<Task> tasks, bool force = false}) async {
+    final box = Hive.box<Task>(taskBoxName);
+    if (box.isEmpty || force) {
+      await box.clear(); // Clear the box if it's not empty or force is true
+      await box.addAll(tasks);
+    } else {
+      print(
+          'Box is not empty, skipping demo task creation. box length: ${box.length}');
+    }
+  }
 }
