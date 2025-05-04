@@ -9,5 +9,5 @@ class TaskState {
   @HiveField(0)
   final String taskId;
   @HiveField(1)
-  final String completed;
+  final bool completed;
 }

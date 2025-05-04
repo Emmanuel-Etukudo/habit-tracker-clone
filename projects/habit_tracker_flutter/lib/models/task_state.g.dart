@@ -18,7 +18,7 @@ class TaskStateAdapter extends TypeAdapter<TaskState> {
     };
     return TaskState(
       taskId: fields[0] as String,
-      completed: fields[1] as String,
+      completed: fields[1] as bool,
     );
   }
 
