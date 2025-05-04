@@ -42,7 +42,7 @@ class HiveDataStore {
 
   Future<void> setTaskState({
     required Task task,
-    required String completed,
+    required bool completed,
   }) async {
     final box = Hive.box<TaskState>(taskStateBoxName);
     final taskState = TaskState(taskId: task.id, completed: completed);
@@ -53,6 +53,13 @@ class HiveDataStore {
     final box = Hive.box<TaskState>(taskStateBoxName);
     final key = taskStateKey(task.id);
     return box.listenable(keys: [key]);
+  }
+
+  TaskState taskstate(Box<TaskState> box, {required Task task}) {
+    final key = taskStateKey(task.id);
+    final taskState =
+        box.get(key) ?? TaskState(taskId: task.id, completed: false);
+    return taskState;
   }
 }
 

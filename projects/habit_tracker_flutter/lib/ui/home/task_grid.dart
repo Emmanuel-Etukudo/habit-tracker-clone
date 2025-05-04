@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 import 'package:habit_tracker_flutter/models/task.dart';
-import 'package:habit_tracker_flutter/ui/task/task_with_name.dart';
+import 'package:habit_tracker_flutter/ui/task/task_with_name_loader.dart';
 
 class TaskGrid extends StatelessWidget {
   const TaskGrid({super.key, required this.tasks});
@@ -28,7 +28,9 @@ class TaskGrid extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           final task = tasks[index];
-          return TaskWithName(task: task);
+          return TaskWithNameLoader(
+            task: task,
+          );
         },
         itemCount: taskslength,
         physics: NeverScrollableScrollPhysics(),

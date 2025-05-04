@@ -21,7 +21,7 @@ Future<void> main() async {
     Task.create(name: 'Floss Your Teeth', iconName: AppAssets.dentalFloss),
     Task.create(name: 'Drink Water', iconName: AppAssets.water),
     Task.create(name: 'Practice Instrument', iconName: AppAssets.guitar),
-  ], force: true);
+  ], force: false);
   runApp(ProviderScope(overrides: [
     dataStoreProvider.overrideWithValue(dataStore),
   ], child: const MyApp()));
